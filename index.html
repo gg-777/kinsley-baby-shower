@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kinsley's Garden of Love | Digital Memory Capsule</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="#home">Kinsley's Garden of Love</a>
+    <div class="links">
+      <a href="#memories" data-i18n="navMemory">Add Memory</a>
+      <a href="#gallery" data-i18n="navPreview">Preview</a>
+      <a href="#future" data-i18n="navFuture">Future Notes</a>
+      <a href="#thanks" data-i18n="navThanks">Thank You</a>
+      <button class="lang-toggle" id="langToggle" type="button">EN / ES</button>
+    </div>
+  </nav>
+
+  <header id="home" class="hero">
+    <div class="hero-shell">
+      <div class="hero-card">
+        <div class="kicker" data-i18n="kicker">Digital Memory Capsule</div>
+        <h1 data-i18n="heroTitle">Kinsley's Garden of Love</h1>
+        <h2 data-i18n="heroSubtitle">Created with love before she even arrived.</h2>
+        <p data-i18n="heroText">Share photos, videos, voice messages, and heartfelt wishes that Baby Kinsley can revisit for years to come.</p>
+        <div class="date" data-i18n="date">June 13, 2026</div>
+        <a class="btn hero-btn" href="#memories" data-i18n="heroButton">Add a Memory</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="memories" class="section memory-section">
+      <div class="section-title">
+        <div class="script" data-i18n="shareScript">Share a Memory</div>
+        <h2 data-i18n="memoryHeading">Choose what you would like to leave for Kinsley</h2>
+        <p data-i18n="memoryIntro">Every upload becomes part of her keepsake collection — a beautiful gift from the people who loved her from the very beginning.</p>
+      </div>
+
+      <div class="memory-grid">
+        <article class="lux-card memory-card">
+          <div>
+            <div class="icon">📸</div>
+            <h3 data-i18n="photosTitle">Photos</h3>
+            <p data-i18n="photosText">Share sweet moments from the celebration.</p>
+          </div>
+          <label class="btn file-btn">
+            <span data-i18n="uploadBtn">Upload</span>
+            <input id="photoInput" type="file" accept="image/*" multiple hidden />
+          </label>
+        </article>
+
+        <article class="lux-card memory-card">
+          <div>
+            <div class="icon">🎥</div>
+            <h3 data-i18n="videosTitle">Videos</h3>
+            <p data-i18n="videosText">Capture laughter, games, gifts, and family memories.</p>
+          </div>
+          <label class="btn file-btn">
+            <span data-i18n="uploadBtn">Upload</span>
+            <input id="videoInput" type="file" accept="video/*" multiple hidden />
+          </label>
+        </article>
+
+        <article class="lux-card memory-card">
+          <div>
+            <div class="icon">🎤</div>
+            <h3 data-i18n="voiceTitle">Voice Message</h3>
+            <p data-i18n="voiceText">Record a message she can hear in your own voice someday.</p>
+          </div>
+          <button class="btn" id="openVoice" type="button" data-i18n="recordBtn">Record</button>
+        </article>
+
+        <article class="lux-card memory-card">
+          <div>
+            <div class="icon">💌</div>
+            <h3 data-i18n="wishTitle">Written Wish</h3>
+            <p data-i18n="wishText">Leave a blessing, advice, prayer, or loving note.</p>
+          </div>
+          <button class="btn" id="openWish" type="button" data-i18n="writeBtn">Write</button>
+        </article>
+      </div>
+
+      <div id="uploadStatus" class="status" aria-live="polite"></div>
+    </section>
+
+    <section id="gallery" class="section">
+      <div class="section-title">
+        <div class="script" data-i18n="galleryScript">Memory Capsule Preview</div>
+        <h2 data-i18n="galleryHeading">A soft glimpse of the love shared today</h2>
+        <p data-i18n="galleryText">This preview will show memories uploaded from this browser. Your Cloudinary account stores everything.</p>
+      </div>
+      <div id="galleryGrid" class="gallery empty-gallery">
+        <p data-i18n="galleryEmpty">Uploaded photos and videos will appear here after guests add them.</p>
+      </div>
+    </section>
+
+    <section id="future" class="section">
+      <div class="section-title">
+        <div class="script" data-i18n="futureScript">For Her Future</div>
+        <h2 data-i18n="futureHeading">Messages Kinsley can open one day</h2>
+        <p data-i18n="futureText">Guests can leave time-capsule notes for birthdays, milestones, and special moments in her life.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="lux-card milestone"><span data-i18n="m1">🌸 Baby Shower</span><h3 data-i18n="m1Title">First Memories</h3><p data-i18n="m1Text">The day everyone celebrated her arrival.</p></div>
+        <div class="lux-card milestone"><span data-i18n="m2">👶 Birth Day</span><h3 data-i18n="m2Title">Welcome Baby</h3><p data-i18n="m2Text">A keepsake for the day she enters the world.</p></div>
+        <div class="lux-card milestone"><span data-i18n="m3">🎒 First Day of School</span><h3 data-i18n="m3Title">Encouragement</h3><p data-i18n="m3Text">Words to make her feel brave.</p></div>
+        <div class="lux-card milestone"><span data-i18n="m4">📚 Teenager</span><h3 data-i18n="m4Title">Confidence</h3><p data-i18n="m4Text">Words for a teenager becoming her own person.</p></div>
+        <div class="lux-card milestone"><span data-i18n="m5">🎓 Graduation</span><h3 data-i18n="m5Title">Proud Moments</h3><p data-i18n="m5Text">Celebrate who she has grown to be.</p></div>
+        <div class="lux-card milestone"><span data-i18n="m6">🌟 Age 21</span><h3 data-i18n="m6Title">Future Blessings</h3><p data-i18n="m6Text">Advice as she steps into adulthood.</p></div>
+        <div class="lux-card milestone"><span data-i18n="m7">💍 Wedding Day</span><h3 data-i18n="m7Title">Family Love</h3><p data-i18n="m7Text">A keepsake note for one of life's biggest days.</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="quote">
+        <p data-i18n="quote">Years from now, Kinsley will be able to revisit the voices, photos, videos, and messages shared by the people who loved her before she was born.</p>
+      </div>
+    </section>
+
+    <section id="thanks" class="section">
+      <div class="thank-you">
+        <div class="emblem">♡</div>
+        <h2 data-i18n="thanksHeading">A Special Thank You</h2>
+        <p data-i18n="thanksP1">We are deeply grateful to each of you for celebrating Baby Kinsley and surrounding our family with so much love.</p>
+        <p data-i18n="thanksP2">Every photo, video, voice message, and written wish shared today becomes part of Kinsley's Digital Memory Capsule — a keepsake she can revisit for years to come.</p>
+        <p data-i18n="thanksP3">Thank you for helping us create something she will cherish forever. 💕</p>
+        <div class="signature">
+          <span data-i18n="signatureLead">With love and gratitude,</span>
+          <strong data-i18n="signatureName">Heidi, Adan & Baby Kinsley</strong>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p data-i18n="footer">Kinsley's Garden of Love · A Glowrious Moments Digital Memory Capsule</p>
+  </footer>
+
+  <div id="modalBackdrop" class="modal-backdrop" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="close" id="closeModal" type="button" aria-label="Close">×</button>
+
+      <div id="wishModal" class="modal-content" hidden>
+        <h2 id="modalTitle" data-i18n="wishModalTitle">Leave a Written Wish</h2>
+        <p data-i18n="wishModalText">Tell Kinsley who you are and leave her a loving note for the future.</p>
+        <form id="wishForm" class="form">
+          <label><span data-i18n="nameLabel">Your name</span><input id="guestName" type="text" required placeholder="Aunt Maria" /></label>
+          <label><span data-i18n="relationshipLabel">Relationship to Kinsley</span><input id="relationship" type="text" required placeholder="Aunt, friend, cousin..." /></label>
+          <label><span data-i18n="messageLabel">Your message</span><textarea id="wishMessage" rows="6" required placeholder="Write your blessing, advice, prayer, or wish..."></textarea></label>
+          <button class="btn full" type="submit" data-i18n="submitWish">Save Written Wish</button>
+        </form>
+      </div>
+
+      <div id="voiceModal" class="modal-content" hidden>
+        <h2 data-i18n="voiceModalTitle">Record a Voice Message</h2>
+        <p data-i18n="voiceModalText">Record a short message for Kinsley. Works best on phones using Chrome or Safari.</p>
+        <div class="recorder">
+          <button class="btn" id="startRecord" type="button" data-i18n="startRecord">Start Recording</button>
+          <button class="btn secondary" id="stopRecord" type="button" disabled data-i18n="stopRecord">Stop Recording</button>
+          <audio id="audioPlayback" controls hidden></audio>
+          <button class="btn full" id="uploadRecording" type="button" disabled data-i18n="uploadRecording">Upload Voice Message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
