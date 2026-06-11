@@ -115,9 +115,18 @@ function addToGallery(asset) {
   }
   gallery.prepend(wrap);
 
-  const saved = JSON.parse(localStorage.getItem("kinsley_gallery") || "[]");
-  saved.unshift(asset);
-  localStorage.setItem("kinsley_gallery", JSON.stringify(saved));
+  if (!asset.fromStorage) {
+    const saved = JSON.parse(
+      localStorage.getItem("kinsley_gallery") || "[]"
+    );
+
+    saved.unshift(asset);
+
+    localStorage.setItem(
+      "kinsley_gallery",
+      JSON.stringify(saved)
+    );
+  }
 }
 
 function loadSavedGallery() {
@@ -126,6 +135,7 @@ function loadSavedGallery() {
   );
 
   saved.reverse().forEach(asset => {
+    asset.fromStorage = true;
     addToGallery(asset);
   });
 }
@@ -227,7 +237,7 @@ document.addEventListener("DOMContentLoaded", () => {
   applyLanguage();
 
   loadSavedGallery();
-  
+
   document.getElementById("langToggle").addEventListener("click", () => {
     currentLang = currentLang === "en" ? "es" : "en";
     applyLanguage();
