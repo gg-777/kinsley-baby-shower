@@ -341,3 +341,7 @@ audio { width:100%; }
   .thank-you { padding:48px 22px; }
   .section { padding:58px 0; }
 }
+[hidden] {
+  display: none !important;
+}
+
