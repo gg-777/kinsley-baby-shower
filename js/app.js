@@ -114,6 +114,20 @@ function addToGallery(asset) {
     wrap.appendChild(link);
   }
   gallery.prepend(wrap);
+
+  const saved = JSON.parse(localStorage.getItem("kinsley_gallery") || "[]");
+  saved.unshift(asset);
+  localStorage.setItem("kinsley_gallery", JSON.stringify(saved));
+}
+
+function loadSavedGallery() {
+  const saved = JSON.parse(
+    localStorage.getItem("kinsley_gallery") || "[]"
+  );
+
+  saved.reverse().forEach(asset => {
+    addToGallery(asset);
+  });
 }
 
 function openModal(type) {
@@ -211,6 +225,9 @@ async function uploadRecording() {
 
 document.addEventListener("DOMContentLoaded", () => {
   applyLanguage();
+
+  loadSavedGallery();
+  
   document.getElementById("langToggle").addEventListener("click", () => {
     currentLang = currentLang === "en" ? "es" : "en";
     applyLanguage();
