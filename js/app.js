@@ -77,6 +77,7 @@ async function handleFiles(files, folder) {
   try {
     for (const file of files) {
       const result = await uploadToCloudinary(file, folder);
+      console.log("UPLOAD RESULT:", result);
       addToGallery(result);
     }
     setStatus(t("uploaded"), "success");
