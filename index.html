@@ -168,13 +168,67 @@
       <button class="close" id="closeModal" type="button" aria-label="Close">×</button>
 
       <div id="wishModal" class="modal-content" hidden>
-        <h2 id="modalTitle" data-i18n="wishModalTitle">Leave a Written Wish</h2>
-        <p data-i18n="wishModalText">Tell Kinsley who you are and leave her a loving note for the future.</p>
+        <h2 id="modalTitle" data-i18n="wishModalTitle">Leave a Message for Kinsley</h2>
+        <p>Share a loving message, family story, blessing, memory, or words of encouragement for Kinsley to treasure forever. </p>
         <form id="wishForm" class="form">
-          <label><span data-i18n="nameLabel">Your name</span><input id="guestName" type="text" required placeholder="Aunt Maria" /></label>
-          <label><span data-i18n="relationshipLabel">Relationship to Kinsley</span><input id="relationship" type="text" required placeholder="Aunt, friend, cousin..." /></label>
-          <label><span data-i18n="messageLabel">Your message</span><textarea id="wishMessage" rows="6" required placeholder="Write your blessing, advice, prayer, or wish..."></textarea></label>
-          <button class="btn full" type="submit" data-i18n="submitWish">Save Written Wish</button>
+
+          <label>
+            <span>Your Name</span>
+            <input id="guestName" type="text" required placeholder="Aunt Maria" />
+          </label>
+
+          <label>
+            <span>From Who</span>
+            <input id="fromWho" type="text" placeholder="Mom's best friend, Grandma, Cousin..." />
+          </label>
+
+          <label>
+            <span>Relationship to Kinsley</span>
+            <input id="relationship" type="text" required placeholder="Aunt, friend, cousin..." />
+          </label>
+
+          <label>
+            <span>Message Type</span>
+
+            <div class="message-types">
+
+              <button type="button" class="type-pill active">
+                💗 Loving Message
+              </button>
+
+              <button type="button" class="type-pill">
+                🌸 Blessing
+              </button>
+
+              <button type="button" class="type-pill">
+                🌟 Advice
+              </button>
+
+              <button type="button" class="type-pill">
+                😂 Funny Memory
+              </button>
+              
+              <button type="button" class="type-pill">
+                ✨ Encouragement
+              </button>
+
+            </div>
+          </label>
+
+          <label>
+            <span>Your Message</span>
+            <textarea
+              id="wishMessage"
+              rows="6"
+              required
+              placeholder="Share your love, advice, story, blessing, or special message for Kinsley..."
+            ></textarea>
+          </label>
+
+          <button class="btn full" type="submit">
+            💗 Save Message
+          </button>
+
         </form>
       </div>
 
