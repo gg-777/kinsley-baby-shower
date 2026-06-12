@@ -1,6 +1,7 @@
 const CLOUD_NAME = "dh2idzrha";
 const UPLOAD_PRESET = "kinsley_uploads";
 const BASE_FOLDER = "Kinsley-Baby-Shower";
+const GALLERY_API_URL = "https://kinsley-gallery-api.gestrellitag777.workers.dev";
 
 let currentLang = localStorage.getItem("kinsley_lang") || "en";
 let mediaRecorder;
@@ -116,29 +117,34 @@ function addToGallery(asset) {
   }
   gallery.prepend(wrap);
 
-  if (!asset.fromStorage) {
-    const saved = JSON.parse(
-      localStorage.getItem("kinsley_gallery") || "[]"
-    );
-
-    saved.unshift(asset);
-
-    localStorage.setItem(
-      "kinsley_gallery",
-      JSON.stringify(saved)
-    );
-  }
 }
 
-function loadSavedGallery() {
-  const saved = JSON.parse(
-    localStorage.getItem("kinsley_gallery") || "[]"
-  );
+async function loadCloudinaryGallery() {
+  const gallery = document.getElementById("galleryGrid");
 
-  saved.reverse().forEach(asset => {
-    asset.fromStorage = true;
-    addToGallery(asset);
-  });
+  try {
+    const response = await fetch(GALLERY_API_URL);
+    const data = await response.json();
+
+    const resources = data.resources || [];
+
+    if (!resources.length) {
+      return;
+    }
+
+    gallery.classList.remove("empty-gallery");
+    gallery.innerHTML = "";
+
+    resources
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+      .forEach(asset => {
+        asset.fromStorage = true;
+        addToGallery(asset);
+      });
+
+  } catch (error) {
+    console.error("Could not load shared gallery:", error);
+  }
 }
 
 function openModal(type) {
@@ -237,7 +243,7 @@ async function uploadRecording() {
 document.addEventListener("DOMContentLoaded", () => {
   applyLanguage();
 
-  loadSavedGallery();
+  loadCloudinaryGallery();
 
   document.getElementById("langToggle").addEventListener("click", () => {
     currentLang = currentLang === "en" ? "es" : "en";
