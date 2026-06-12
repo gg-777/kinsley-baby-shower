@@ -143,26 +143,23 @@ body::before {
   font-weight:700;
 }
 .event-date {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-  padding: 14px 24px;
+  min-width:220px;
+  height:64px;
 
-  border-radius: 999px;
+  border-radius:999px;
 
-  background: rgba(230,198,106,.15);
+  background:rgba(230,198,106,.15);
+  border:1px solid rgba(230,198,106,.35);
 
-  border: 1px solid rgba(230,198,106,.35);
+  color:#8a6a00;
+  font-weight:700;
+  font-size:1rem;
 
-  color: #8a6a00;
-
-  font-weight: 700;
-
-  font-size: 1rem;
-
-  box-shadow: 0 8px 20px rgba(230,198,106,.12);
+  box-shadow:0 8px 20px rgba(230,198,106,.12);
 }
 .hero-actions {
   display: flex;
@@ -171,6 +168,11 @@ body::before {
   gap: 18px;
   flex-wrap: wrap;
   margin-top: 24px;
+}
+.hero-actions .btn,
+.hero-actions .event-date {
+  min-width: 220px;
+  height: 64px;
 }
 .section { width:min(1220px, calc(100% - 32px)); margin:auto; padding:78px 0; }
 .section-title { text-align:center; max-width:850px; margin:0 auto 42px; }
