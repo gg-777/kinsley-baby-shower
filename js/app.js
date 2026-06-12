@@ -94,27 +94,33 @@ function addToGallery(asset) {
     gallery.classList.remove("empty-gallery");
     gallery.innerHTML = "";
   }
+
   const wrap = document.createElement("div");
-  wrap.className = "gallery-item";
+  wrap.className = "swiper-slide";
+
+  const card = document.createElement("div");
+  card.className = "gallery-item";
 
   if (asset.resource_type === "video") {
     const video = document.createElement("video");
     video.src = asset.secure_url;
     video.controls = true;
-    wrap.appendChild(video);
+    card.appendChild(video);
   } else if (asset.resource_type === "image") {
     const img = document.createElement("img");
     img.src = asset.secure_url;
     img.alt = "Kinsley memory";
-    wrap.appendChild(img);
+    card.appendChild(img);
   } else {
     const link = document.createElement("a");
     link.href = asset.secure_url;
     link.target = "_blank";
     link.rel = "noopener";
     link.textContent = "Open uploaded memory";
-    wrap.appendChild(link);
+    card.appendChild(link);
   }
+  wrap.appendChild(card);
+
   gallery.prepend(wrap);
 
 }
@@ -244,6 +250,23 @@ document.addEventListener("DOMContentLoaded", () => {
   applyLanguage();
 
   loadCloudinaryGallery();
+
+  new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    centeredSlides: true,
+    loop: true,
+
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true
+    },
+
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
+    }
+  });
 
   document.getElementById("langToggle").addEventListener("click", () => {
     currentLang = currentLang === "en" ? "es" : "en";
