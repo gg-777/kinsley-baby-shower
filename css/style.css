@@ -246,22 +246,6 @@ body::before {
 .status.success { color:#167a3a; }
 .status.error { color:#b42318; }
 
-.gallery {
-  display:flex;
-  overflow-x:auto;
-  gap:20px;
-  scroll-snap-type:x mandatory;
-  padding-bottom:10px;
-}
-
-.gallery::-webkit-scrollbar {
-  height:8px;
-}
-
-.gallery-item {
-  flex:0 0 80%;
-  scroll-snap-align:center;
-}
 .empty-gallery {
   display:block;
   background:rgba(255,255,255,.76);
