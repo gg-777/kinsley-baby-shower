@@ -8,6 +8,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
 </head>
 <body>
   <nav class="nav">
@@ -95,8 +100,13 @@
         <h2 data-i18n="galleryHeading">A soft glimpse of the love shared today</h2>
         <p data-i18n="galleryText">This preview will show memories uploaded from this browser. Your Cloudinary account stores everything.</p>
       </div>
-      <div id="galleryGrid" class="gallery empty-gallery">
-        <p data-i18n="galleryEmpty">Uploaded photos and videos will appear here after guests add them.</p>
+      <div class="swiper mySwiper">
+        <div id="galleryGrid" class="swiper-wrapper">
+        </div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
       </div>
     </section>
 
@@ -171,6 +181,7 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
