@@ -294,9 +294,12 @@ body::before {
   inset:0;
   z-index:100;
   background:rgba(37,48,65,.48);
-  display:grid;
+  display:none;
   place-items:center;
   padding:18px;
+}
+.modal-backdrop:not([hidden]) {
+  display:grid;
 }
 .modal {
   width:min(620px, 100%);
