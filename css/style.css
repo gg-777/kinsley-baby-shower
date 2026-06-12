@@ -142,7 +142,36 @@ body::before {
   border:1px solid rgba(230,198,106,.35);
   font-weight:700;
 }
+.event-date {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 
+  padding: 14px 24px;
+
+  border-radius: 999px;
+
+  background: rgba(230,198,106,.15);
+
+  border: 1px solid rgba(230,198,106,.35);
+
+  color: #8a6a00;
+
+  font-weight: 700;
+
+  font-size: 1rem;
+
+  box-shadow: 0 8px 20px rgba(230,198,106,.12);
+}
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
 .section { width:min(1220px, calc(100% - 32px)); margin:auto; padding:78px 0; }
 .section-title { text-align:center; max-width:850px; margin:0 auto 42px; }
 .script {
@@ -389,3 +418,4 @@ audio { width:100%; }
   .thank-you { padding:48px 22px; }
   .section { padding:58px 0; }
 }
+
