@@ -262,6 +262,26 @@ body::before {
   background: #fff;
 }
 
+/* Swiper Carousel */
+.mySwiper {
+  width: 100%;
+  padding: 20px 0 60px;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--rose);
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--rose);
+}
+
 .timeline { grid-template-columns:repeat(3, 1fr); }
 .milestone { padding:28px; }
 .milestone span { display:block; color:var(--rose); font-weight:800; margin-bottom:10px; }
