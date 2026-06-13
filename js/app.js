@@ -2,6 +2,7 @@ const CLOUD_NAME = "dh2idzrha";
 const UPLOAD_PRESET = "kinsley_uploads";
 const BASE_FOLDER = "Kinsley-Baby-Shower";
 const GALLERY_API_URL = "https://kinsley-gallery-api.gestrellitag777.workers.dev";
+const MESSAGE_API_URL = "https://kinsley-message-api.gestrellitag777.workers.dev";
 
 let currentLang = localStorage.getItem("kinsley_lang") || "en";
 let mediaRecorder;
@@ -167,9 +168,6 @@ async function saveWish(event) {
   event.preventDefault();
   const name = document.getElementById("guestName").value.trim();
 
-  const fromWho =
-    document.getElementById("fromWho").value.trim();
-
   const relationship =
     document.getElementById("relationship").value.trim();
 
@@ -182,7 +180,7 @@ async function saveWish(event) {
   const type =
     document.querySelector(".type-pill.active")?.dataset.type ||
     "Loving Message";
-  if (!name || !relationship || !message) return;
+  if (!name || !message) return;
 
   const wish = {
     event: "Kinsley Baby Shower",
@@ -266,10 +264,34 @@ async function uploadRecording() {
   }
 }
 
+async function loadMessages() {
+
+  try {
+
+    const response =
+      await fetch(MESSAGE_API_URL);
+
+    const data =
+      await response.json();
+
+    console.log("MESSAGES LOADED:", data);
+
+  } catch (err) {
+
+    console.error(
+      "Could not load messages",
+      err
+    );
+
+  }
+
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   applyLanguage();
 
   loadCloudinaryGallery();
+  loadMessages();
 
   new Swiper(".mySwiper", {
     slidesPerView: 1,
