@@ -285,3 +285,17 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("stopRecord").addEventListener("click", stopRecording);
   document.getElementById("uploadRecording").addEventListener("click", uploadRecording);
 });
+// Message Type Pills
+
+document.querySelectorAll(".type-pill").forEach(btn => {
+
+  btn.addEventListener("click", () => {
+
+    document.querySelectorAll(".type-pill")
+      .forEach(p => p.classList.remove("active"));
+
+    btn.classList.add("active");
+
+  });
+
+});
