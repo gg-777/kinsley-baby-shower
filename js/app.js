@@ -266,117 +266,126 @@ async function uploadRecording() {
 
 async function loadMessages() {
 
-  try {
+try {
 
-    console.log("Loading messages...");
+const response = await fetch(MESSAGE_API_URL);
+const data = await response.json();
 
-    const response =
-      await fetch(MESSAGE_API_URL);
+const selector =
+  document.getElementById("milestoneSelector");
 
-    const data =
-      await response.json();
+const display =
+  document.getElementById("messageDisplay");
 
-    console.log("API RESPONSE:", data);
+const milestones = [
+  "Baby Shower",
+  "First Day of School",
+  "Teenager",
+  "Graduation",
+  "Wedding Day",
+  "Age 21"
+];
 
-    const container =
-      document.getElementById("messageTimeline");
+const icons = {
+  "Baby Shower":"🌸",
+  "First Day of School":"🏫",
+  "Teenager":"🧑",
+  "Graduation":"🎓",
+  "Wedding Day":"💍",
+  "Age 21":"🌟"
+};
 
-    if (!container) {
+const messages = [];
 
-      console.error(
-        "messageTimeline container not found!"
+for (const file of (data.resources || [])) {
+
+  const msgResponse =
+    await fetch(file.secure_url);
+
+  const msg =
+    await msgResponse.json();
+
+  messages.push(msg);
+
+}
+
+selector.innerHTML = "";
+
+milestones.forEach((milestone, index) => {
+
+  const count =
+    messages.filter(
+      m => m.milestone === milestone
+    ).length;
+
+  const card =
+    document.createElement("div");
+
+  card.className = "milestone-card";
+
+  card.innerHTML = `
+    <h3>${icons[milestone]} ${milestone}</h3>
+    <p>${count} Message${count !== 1 ? "s" : ""}</p>
+  `;
+
+  card.addEventListener("click", () => {
+
+    document
+      .querySelectorAll(".milestone-card")
+      .forEach(c =>
+        c.classList.remove("active")
       );
 
-      return;
-    }
+    card.classList.add("active");
 
-    if (!data.resources?.length) {
+    const filtered =
+      messages.filter(
+        m => m.milestone === milestone
+      );
 
-      console.log("No messages found.");
+    if (!filtered.length) {
 
-      container.innerHTML = `
+      display.innerHTML = `
         <div class="lux-card milestone">
-          <h3>No Messages Yet</h3>
-          <p>Be the first to leave Kinsley a message.</p>
+          <h3>${milestone}</h3>
+          <p>No messages yet.</p>
         </div>
       `;
 
       return;
     }
 
-    console.log(
-      "Found",
-      data.resources.length,
-      "message files"
-    );
-
-    let html = "";
-
-    for (const file of data.resources) {
-
-      console.log(
-        "Loading file:",
-        file.public_id
-      );
-
-      const messageResponse =
-        await fetch(file.secure_url);
-
-      const message =
-        await messageResponse.json();
-
-      console.log(
-        "Message Loaded:",
-        message
-      );
-
-      html += `
+    display.innerHTML =
+      filtered.map(msg => `
         <div class="lux-card milestone">
-
-          <span>
-            ${message.milestone || "Memory"}
-          </span>
-
-          <h3>
-            ${message.type || "Message"}
-          </h3>
-
-          <p>
-            "${message.message}"
-          </p>
-
-          <br>
-
-          <strong>
-            — ${message.name}
-          </strong>
-
-          <br>
-
-          <small>
-            ${message.relationship || ""}
-          </small>
-
+          <span>${msg.type || "Message"}</span>
+          <h3>${msg.name}</h3>
+          <p>"${msg.message}"</p>
+          <small>${msg.relationship || ""}</small>
         </div>
-      `;
-    }
+      `).join("");
 
-    container.innerHTML = html;
+  });
 
-    console.log(
-      "Messages rendered successfully."
-    );
+  selector.appendChild(card);
 
+  if (index === 0) {
+    card.click();
   }
 
-  catch (err) {
+});
 
-    console.error(
-      "MESSAGE LOAD FAILED:",
-      err
-    );
 
-  }
+} catch (err) {
+
+
+console.error(
+  "MESSAGE LOAD FAILED:",
+  err
+);
+
+
+}
 
 }
 
