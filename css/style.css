@@ -339,6 +339,52 @@ body::before {
 }
 .milestone { padding:28px; }
 .milestone span { display:block; color:var(--rose); font-weight:800; margin-bottom:10px; }
+.memory-message-card{
+  background:white;
+  border-radius:28px;
+  padding:28px;
+  box-shadow:var(--shadow);
+  border:1px solid rgba(217,108,157,.12);
+  position:relative;
+}
+
+.memory-message-card::before{
+  content:"💕";
+  position:absolute;
+  top:18px;
+  right:22px;
+  font-size:1.4rem;
+  opacity:.35;
+}
+
+.message-type{
+  color:var(--rose);
+  font-weight:700;
+  margin-bottom:18px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-size:.85rem;
+}
+
+.message-body{
+  font-size:1.1rem;
+  line-height:1.8;
+  color:var(--ink);
+  margin-bottom:24px;
+}
+
+.message-author{
+  font-family:'Playfair Display', serif;
+  font-size:1.15rem;
+  color:var(--rose);
+  font-weight:700;
+}
+
+.message-relationship{
+  color:var(--muted);
+  margin-top:4px;
+  font-size:.9rem;
+}
 .quote {
   text-align:center;
   padding:60px 30px;
