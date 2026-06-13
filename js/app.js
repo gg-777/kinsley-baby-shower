@@ -268,18 +268,111 @@ async function loadMessages() {
 
   try {
 
+    console.log("Loading messages...");
+
     const response =
       await fetch(MESSAGE_API_URL);
 
     const data =
       await response.json();
 
-    console.log("MESSAGES LOADED:", data);
+    console.log("API RESPONSE:", data);
 
-  } catch (err) {
+    const container =
+      document.getElementById("messageTimeline");
+
+    if (!container) {
+
+      console.error(
+        "messageTimeline container not found!"
+      );
+
+      return;
+    }
+
+    if (!data.resources?.length) {
+
+      console.log("No messages found.");
+
+      container.innerHTML = `
+        <div class="lux-card milestone">
+          <h3>No Messages Yet</h3>
+          <p>Be the first to leave Kinsley a message.</p>
+        </div>
+      `;
+
+      return;
+    }
+
+    console.log(
+      "Found",
+      data.resources.length,
+      "message files"
+    );
+
+    let html = "";
+
+    for (const file of data.resources) {
+
+      console.log(
+        "Loading file:",
+        file.public_id
+      );
+
+      const messageResponse =
+        await fetch(file.secure_url);
+
+      const message =
+        await messageResponse.json();
+
+      console.log(
+        "Message Loaded:",
+        message
+      );
+
+      html += `
+        <div class="lux-card milestone">
+
+          <span>
+            ${message.milestone || "Memory"}
+          </span>
+
+          <h3>
+            ${message.type || "Message"}
+          </h3>
+
+          <p>
+            "${message.message}"
+          </p>
+
+          <br>
+
+          <strong>
+            — ${message.name}
+          </strong>
+
+          <br>
+
+          <small>
+            ${message.relationship || ""}
+          </small>
+
+        </div>
+      `;
+    }
+
+    container.innerHTML = html;
+
+    console.log(
+      "Messages rendered successfully."
+    );
+
+  }
+
+  catch (err) {
 
     console.error(
-      "Could not load messages",
+      "MESSAGE LOAD FAILED:",
       err
     );
 
