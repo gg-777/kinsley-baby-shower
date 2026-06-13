@@ -206,6 +206,7 @@ async function saveWish(event) {
     setStatus(t("wishSaved"), "success");
     event.target.reset();
     closeModal();
+    loadMessages(); // refresh message section
   } catch (error) {
     console.error(error);
     setStatus(t("uploadError"), "error");
@@ -357,13 +358,26 @@ milestones.forEach((milestone, index) => {
 
     display.innerHTML =
       filtered.map(msg => `
-        <div class="lux-card milestone">
-          <span>${msg.type || "Message"}</span>
-          <h3>${msg.name}</h3>
-          <p>"${msg.message}"</p>
-          <small>${msg.relationship || ""}</small>
+        <div class="memory-message-card">
+
+          <div class="message-type">
+            ${msg.type || "Message"}
+          </div>
+
+          <div class="message-body">
+            "${msg.message}"
+          </div>
+
+          <div class="message-author">
+            — ${msg.name}
+          </div>
+
+          <div class="message-relationship">
+            ${msg.relationship || ""}
+          </div>
+
         </div>
-      `).join("");
+    `).join("");
 
   });
 
