@@ -166,15 +166,35 @@ function closeModal() {
 async function saveWish(event) {
   event.preventDefault();
   const name = document.getElementById("guestName").value.trim();
-  const relationship = document.getElementById("relationship").value.trim();
-  const message = document.getElementById("wishMessage").value.trim();
+
+  const fromWho =
+    document.getElementById("fromWho").value.trim();
+
+  const relationship =
+    document.getElementById("relationship").value.trim();
+
+  const milestone =
+    document.getElementById("wishMilestone").value;
+
+  const message =
+    document.getElementById("wishMessage").value.trim();
+
+  const type =
+    document.querySelector(".type-pill.active")?.dataset.type ||
+    "Loving Message";
   if (!name || !relationship || !message) return;
 
   const wish = {
     event: "Kinsley Baby Shower",
+
     name,
     relationship,
+
+    milestone,
+    type,
+
     message,
+
     submittedAt: new Date().toISOString()
   };
 
